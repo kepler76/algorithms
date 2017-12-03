@@ -6,18 +6,46 @@ import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.options.Options;
 import org.openjdk.jmh.runner.options.OptionsBuilder;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class BenchmarkRunner {
 
-    @Benchmark
-    public void standardPrimeProfiler() {
-        PrimeGenerator.getAllPrimes(1000000);
+    static int genArray[];
+    static final int NO_OF_ELEMENTS = 100;
+
+
+    public BenchmarkRunner() {
+        Random genRandom = new Random();
+        genArray = IntStream.range(0,NO_OF_ELEMENTS).map(v -> genRandom.nextInt()).toArray();
     }
 
     @Benchmark
-    public void sievePrimeProfiler() {
-        PrimeGenerator.getPrimesViaSieve(1000000);
+    public void bubbleSortPTest() {
+        int[] unSortedArray = genArray.clone();
+        Sorting.bubblesort(unSortedArray);
+    }
+
+    @Benchmark
+    public void insertionSortPTest() {
+        int[] unSortedArray = genArray.clone();
+        Sorting.insertionSort(unSortedArray);
+    }
+
+    @Benchmark
+    public void selectionSortPTest() {
+        int[] unSortedArray = genArray.clone();
+        Sorting.insertionSort(unSortedArray);
+    }
+
+    @Benchmark
+    public void mergeSortPTest() {
+        List<Integer> unSortedList = Arrays.stream(genArray.clone()).boxed().collect(Collectors.toList());
+        Sorting.mergeSort(unSortedList);
     }
 
 

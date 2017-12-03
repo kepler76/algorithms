@@ -3,6 +3,7 @@ package com.kepler76.algo;
 import org.openjdk.jmh.annotations.Benchmark;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.stream.IntStream;
 
 
@@ -21,6 +22,7 @@ public class PrimeGenerator {
         }
         return true;
     }
+
 
 
     public static int[] getPrimesViaSieve(int no) {
