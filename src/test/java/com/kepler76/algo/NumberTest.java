@@ -1,8 +1,6 @@
-package com.kepler76.algo.algo;
+package com.kepler76.algo;
 
 
-import com.kepler76.algo.GCD;
-import com.kepler76.algo.PrimeGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 
