@@ -22,10 +22,6 @@ public class NumberTest {
         Assert.assertTrue(PrimeGenerator.isPrime(5));
         Assert.assertFalse(PrimeGenerator.isPrime(1));
 
-        for ( int no :PrimeGenerator.getAllPrimes(10)) {
-            System.out.println(no);
-        }
-
         Assert.assertArrayEquals(new int[] {2,3,5,7},
                 PrimeGenerator.getAllPrimes(10));
 
