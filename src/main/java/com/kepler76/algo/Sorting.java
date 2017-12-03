@@ -1,6 +1,7 @@
 package com.kepler76.algo;
 
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,6 +13,47 @@ public class Sorting {
         array[index2] = temp;
     }
 
+    public static int[] merge(int[] left, int[] right) {
+        int[] combined = new int[left.length+right.length];
+
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int combinedIndex = 0;
+
+        while(leftIndex < left.length && rightIndex < right.length) {
+            if (left[leftIndex] < right[rightIndex]) {
+                combined[combinedIndex] = left[leftIndex];
+                leftIndex++;
+            } else {
+                combined[combinedIndex] = right[rightIndex];
+                rightIndex++;
+
+            }
+            combinedIndex++;
+        }
+
+        if(leftIndex < left.length)
+            System.arraycopy(left, leftIndex, combined, combinedIndex, combined.length - combinedIndex);
+        else if(rightIndex < right.length) {
+            System.arraycopy(right, rightIndex, combined, combinedIndex , combined.length - combinedIndex);
+        }
+
+        return combined;
+    }
+
+
+    public static int[] mergeSort(int[] array) {
+
+        if(array.length <= 1) return array;
+
+        int middle = array.length / 2;
+
+        int[] left = mergeSort(Arrays.copyOfRange(array, 0, middle));
+        int[] right =mergeSort(Arrays.copyOfRange(array, middle, array.length));
+
+        return merge(left, right);
+
+    }
 
     public static int[] bubblesort(int[] array) {
         for(int iteration = 0; iteration < array.length; iteration++) {

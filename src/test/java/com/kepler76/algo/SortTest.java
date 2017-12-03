@@ -74,5 +74,23 @@ public class SortTest {
         Assert.assertEquals(sortedList, Sorting.mergeSort(unSortedList));
     }
 
+    @Test
+    public void mergeSortTest3() {
+        int[] unSortedArray = genArray.clone();
+        int[] sortedArray = genArray.clone();
+        Arrays.sort(sortedArray);
+        Assert.assertArrayEquals(sortedArray, Sorting.mergeSort(unSortedArray));
+    }
+
+    @Test
+    public void mergeArraysTest() {
+        int[] a1 = new int[] {1,3,5,6,9};
+        int[] a2 = new int[] {2,3,4,5,10,12};
+        int[] result = new int[] {1,2,3,3,4,5,5,6,9,10,12};
+        Assert.assertArrayEquals(result, Sorting.merge(a1, a2 ));
+
+    }
+
+
 
 }
