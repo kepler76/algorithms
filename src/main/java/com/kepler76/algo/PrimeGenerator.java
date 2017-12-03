@@ -1,10 +1,13 @@
 package com.kepler76.algo;
 
+import org.openjdk.jmh.annotations.Benchmark;
+
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
 
 public class PrimeGenerator {
+
 
     public static int[] getAllPrimes(int bound) {
         return IntStream.range(0, bound).filter(PrimeGenerator :: isPrime).toArray();
@@ -27,10 +30,10 @@ public class PrimeGenerator {
     }
 
     private static void removeNonPrimes(int[] sieveArray) {
-        for(int counter = 2; counter <= Math.sqrt(sieveArray.length); counter++) {
+        for(int counter = 2; counter < Math.sqrt(sieveArray.length); counter++) {
             if(sieveArray[counter] > 0) {
                 int nonPrimeIndex = counter*2;
-                while(nonPrimeIndex <= sieveArray.length) {
+                while(nonPrimeIndex < sieveArray.length) {
                     sieveArray[nonPrimeIndex] = 0;
                     nonPrimeIndex += counter;
                 }
@@ -48,4 +51,6 @@ public class PrimeGenerator {
         }
         return sieveArray;
     }
+
+
 }

@@ -30,8 +30,8 @@ public class NumberTest {
                 PrimeGenerator.getPrimesViaSieve(10));
 
 
-        Assert.assertArrayEquals(PrimeGenerator.getAllPrimes(100),
-                PrimeGenerator.getPrimesViaSieve(100));
+        Assert.assertArrayEquals(PrimeGenerator.getAllPrimes(1000),
+                PrimeGenerator.getPrimesViaSieve(1000));
 
     }
 
