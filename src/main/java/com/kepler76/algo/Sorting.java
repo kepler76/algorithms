@@ -4,6 +4,7 @@ package com.kepler76.algo;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Stack;
 
 public class Sorting {
 
@@ -13,7 +14,7 @@ public class Sorting {
         array[index2] = temp;
     }
 
-    public static int[] merge(int[] left, int[] right) {
+    public static int[] mergeArrays(int[] left, int[] right) {
         int[] combined = new int[left.length+right.length];
 
         int leftIndex = 0;
@@ -41,6 +42,53 @@ public class Sorting {
         return combined;
     }
 
+    public static int partition(int array[], int start, int end) {
+        int pivotValue = array[end];
+
+        Stack<Integer> lessThanStack = new Stack<>();
+        Stack<Integer> greaterThanStack = new Stack<>();
+
+        for(int counter =start; counter < end; counter++) {
+            if(array[counter] < pivotValue) {
+                lessThanStack.push(array[counter]);
+            } else {
+                greaterThanStack.push(array[counter]);
+            }
+        }
+
+        int counter = start;
+
+        while(!lessThanStack.isEmpty()) {
+            array[counter] = lessThanStack.pop();
+            counter++;
+        }
+
+        array[counter] = pivotValue;
+        int pivotPos = counter;
+        counter++;
+
+        while(!greaterThanStack.isEmpty()) {
+            array[counter] = greaterThanStack.pop();
+            counter++;
+        }
+
+        return pivotPos;
+
+    }
+
+
+
+    public static void quickSort(int[] array) {
+        quickSort(array, 0,  array.length-1);
+    }
+
+    private static void quickSort(int[] array, int start, int end) {
+        if(start>= end) return;
+        int partitionPos = partition(array, start, end);
+        quickSort(array, start, partitionPos-1);
+        quickSort(array, partitionPos+1, end);
+    }
+
 
     public static int[] mergeSort(int[] array) {
 
@@ -51,7 +99,7 @@ public class Sorting {
         int[] left = mergeSort(Arrays.copyOfRange(array, 0, middle));
         int[] right =mergeSort(Arrays.copyOfRange(array, middle, array.length));
 
-        return merge(left, right);
+        return mergeArrays(left, right);
 
     }
 

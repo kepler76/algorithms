@@ -43,6 +43,13 @@ public class BenchmarkRunner {
     }
 
     @Benchmark
+    public void quickSortPTest() {
+        int[] unSortedArray = genArray.clone();
+        Sorting.quickSort(unSortedArray);
+    }
+
+
+    @Benchmark
     public void mergeSortPTest() {
         List<Integer> unSortedList = Arrays.stream(genArray.clone()).boxed().collect(Collectors.toList());
         Sorting.mergeSort(unSortedList);

@@ -87,10 +87,39 @@ public class SortTest {
         int[] a1 = new int[] {1,3,5,6,9};
         int[] a2 = new int[] {2,3,4,5,10,12};
         int[] result = new int[] {1,2,3,3,4,5,5,6,9,10,12};
-        Assert.assertArrayEquals(result, Sorting.merge(a1, a2 ));
+        Assert.assertArrayEquals(result, Sorting.mergeArrays(a1, a2 ));
 
     }
 
+    @Test
+    public void quickSortTest() {
+        int[] unSortedArray = new int[] {5,4,3,2,1,6,7,8, 22,5,7};
+        int[] sortedArray = new int[] {5,4,3,2,1,6,7,8,22,5,7};
+        Sorting.quickSort(unSortedArray);
+        System.out.println(Arrays.toString(unSortedArray));
+
+        Arrays.sort(sortedArray);
+        Assert.assertArrayEquals(sortedArray, unSortedArray);
+    }
+
+    @Test
+    public void quickSortTest3() {
+        int[] unSortedArray = genArray.clone();
+        Sorting.quickSort(unSortedArray);
+        int[] sortedArray = genArray.clone();
+        Arrays.sort(sortedArray);
+        Assert.assertArrayEquals(sortedArray, unSortedArray);
+    }
+
+
+   @Test
+    public void testPartition() {
+       int[] partitionArray = new int[] {5,4,3,8,1,9,6,8, -22,5,7};
+       Sorting.partition(partitionArray, 0, partitionArray.length-1);
+
+       int[] expectedPartitionedArray = new int[] {5, -22, 6, 1, 3, 4, 5, 7, 8, 9, 8};
+       Assert.assertArrayEquals(expectedPartitionedArray, partitionArray);
+   }
 
 
 }
